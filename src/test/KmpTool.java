@@ -2,9 +2,9 @@ package test;
 
 public class KmpTool {
 
-	private String str1 = "";
-	private String str2 = "";
-	private StringBuilder list = new StringBuilder();
+	private static String str1 = "";
+	private static String str2 = "";
+	private static StringBuilder list = new StringBuilder();
 
 	public KmpTool(String s1, String s2) {
 		this.str1 = s1;
@@ -12,7 +12,7 @@ public class KmpTool {
 		list = findList(s2);
 	}
 
-	public void findPosition() {
+	public static void findPosition(String str1,String str2) {
 		int position = 0;
 		for (; position <= (str1.length() - str2.length());) {
 			int ss = compare(str1.substring(position), str2);
@@ -21,13 +21,13 @@ public class KmpTool {
 				position = position + str2.length();
 			} else {
 				position = position + ss
-						- Integer.valueOf(("" + list).split(",")[ss]) + 1;
+						- Integer.valueOf(("" + list).split(",")[ss].trim()) + 1;
 				System.out.println("now positon " + position);
 			}
 		}
 	}
 
-	public int compare(String s1, String s2) {
+	public static  int compare(String s1, String s2) {
 		int pairlength = 0;
 		int length = s2.length();
 		for (; pairlength < length;) {
